@@ -32,11 +32,11 @@ class Grid extends React.Component {
 	}
 
 	componentDidMount() {
-		new TimelineMax({repeat:-1, yoyo:true}).from(this.myBoard, 20, { x:100 });
+		new TimelineMax({repeat:-1, yoyo:true}).fromTo(this.myBoard, 15, { x:-100 }, { x: 100});
 	}
 	
 	render() {
-		const width = (this.props.cols * 14);
+		const width = (this.props.cols * 13.67);
 		var rowsArr = [];
 
 		var boxClass = "";
@@ -126,7 +126,7 @@ class Board extends React.Component {
 		let gridCopy = arrayClone(this.state.gridFull);
 		for (let i = 0; i < this.rows; i++) {
 			for (let j = 0; j < this.cols; j++) {
-				if (Math.floor(Math.random() * 4) === 1) {
+				if (Math.floor(Math.random() * 5) === 1) {
 					gridCopy[i][j] = true;
 				}
 			}
@@ -209,13 +209,14 @@ class Board extends React.Component {
 					seed={this.seed}
 					gridSize={this.gridSize}
 				/>
-				<Grid
+				<Grid 
 					gridFull={this.state.gridFull}
 					rows={this.rows}
 					cols={this.cols}
 					selectBox={this.selectBox}
 				/>
 				<h2>Generations: {this.state.generation}</h2>
+				<h4>by adilnomad</h4>
 			</div>
 		);
 	}
