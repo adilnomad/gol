@@ -5,6 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { ButtonToolbar } from 'react-bootstrap'
+import GSAP from 'react-gsap-enhancer'
+import { TimelineMax } from 'gsap'
 
 //a box representing a cell in the grid
 class Box extends React.Component {
@@ -24,6 +26,15 @@ class Box extends React.Component {
 
 //a grid that contains Box cells 
 class Grid extends React.Component {
+	constructor() {
+		super();
+		this.myBoard = null;
+	}
+
+	componentDidMount() {
+		new TimelineMax({repeat:-1, yoyo:true}).from(this.myBoard, 20, { x:100 });
+	}
+	
 	render() {
 		const width = (this.props.cols * 14);
 		var rowsArr = [];
@@ -48,7 +59,7 @@ class Grid extends React.Component {
 		}
 
 		return (
-			<div className="grid" style={{width: width}}>
+			<div className="grid" style={{width: width}} ref={div => (this.myBoard = div)}>
 				{rowsArr}
 			</div>
 		);
@@ -135,7 +146,7 @@ class Board extends React.Component {
 	}
 
 	slow = () => {
-		this.speed = 800;
+		this.speed = 1000;
 		this.playButton();
 	}
 
