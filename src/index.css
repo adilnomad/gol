@@ -1,6 +1,8 @@
 
 body {
-    background-image: url("https://images.unsplash.com/photo-1503441669932-76d3a4625eb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1594&q=80");
+    background-image: url("http://www.baltana.com/files/wallpapers-4/Rain-Background-HQ-Desktop-Wallpaper-14526.jpg");
+    background-size: cover; 
+
   }
 
   .box {
@@ -10,10 +12,11 @@ body {
     height: 15px;
     margin-left: 0px;
     margin-bottom: 0px;
-    }
+    transition: transform .2s;
+  }
   
   .off {
-    background-color: lightgray;
+    background-color: transparent;
   }
   
   .on {
@@ -22,46 +25,65 @@ body {
     
   .box:hover { 
     background: #00CCFF;
+    transform: scale(1.5);
   }
   
   .center {
-    margin: auto;
+    margin-left: 5%;
     display: table;
     margin-top: 10px;
   }
   
   .grid {
     line-height: 0;
-    margin: auto;
-    box-shadow: 10px 10px 20px white;
+    margin-left: 5%;
+    box-shadow: 0px 0px 20px white;
     margin-top: 10px;
     border: 10px;
   }
-    
+  .listStyle {
+  color: black;
+  }
   h1, h2, h3, h4 {
     color: white;
     font: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    margin: auto;
+    margin-left: 2%;
+    margin-bottom: 0%;
     text-align: center;
-    width: 50%;
-    margin-top: 10px;
+    width: 30%;
   }
   
-  h4 {
-    margin-top: 0px;
+  .credit {
+    margin-top: 7%;
+    margin-bottom: 1%;  
+    margin-left: 1%;
   }
 
-  .btn {
-    background-color: #4CAF50; /* Green */
+  .button {
+    background-color: green; /* Green */
     border: 2px;
     color: white;
     margin: 5px;
-    padding: 5px 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 5px 5px 5px 5px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    transition: transform .2s;
+    box-shadow: 0px 0px 5px white;
+  }
+  
+  .button:hover {
+    background-color: black;
+    transform: scale(1.2);
   }
 
-  .btn:hover {
-    background-color: black;
+  .placeHolder {     
+    margin-right: 5%;
+    float: right;
+    vertical-align: middle;
+    display: table-cell;
   }
+  
