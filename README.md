@@ -2,4 +2,4 @@ Tribute project to famous mathematician Mr John Conway. A Game of Life simulatio
 
 checkout on: https://gameoflif.herokuapp.com/
 
-![Image] (site.gif)
+![Image](site.gif)
