@@ -9,7 +9,7 @@ class Buttons extends React.Component {
 		return (
 			<div className="center">
 				<ButtonToolbar>
-					<button className="button" onClick={this.props.playButton}>
+					<button className="button" onClick={this.props.startLife}>
 					  Start Life
 					</button>
 					<button className="button" onClick={this.props.pauseButton}>

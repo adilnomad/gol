@@ -9,6 +9,7 @@ import Buttons from './Buttons.jsx';
 import Simulations from './Simulations.jsx';
 import { TimelineMax } from 'gsap';
 import LifeForm from './lifeForm';
+import ReactTooltip from 'react-tooltip';
 
 class Board extends React.Component {
 	constructor() {
@@ -36,7 +37,7 @@ class Board extends React.Component {
 		let gridCopy = arrayClone(this.state.gridFull);
 		for (let i = 0; i < this.rows; i++) {
 			for (let j = 0; j < this.cols; j++) {
-				if (Math.floor(Math.random() * 5) === 1) {
+				if (Math.floor(Math.random() * 5) === 3) {
 					gridCopy[i][j] = true;
 				}
 			}
@@ -46,7 +47,7 @@ class Board extends React.Component {
 		});
 	}
 
-	playButton = () => {
+	startLife = () => {
 		clearInterval(this.intervalId);
 		this.intervalId = setInterval(this.play, this.speed);
 	}
@@ -56,13 +57,13 @@ class Board extends React.Component {
 	}
 
 	slow = () => {
-		this.speed = 1000;
-		this.playButton();
+		this.speed = 1500;
+		this.startLife();
 	}
 
 	fast = () => {
-		this.speed = 100;
-		this.playButton();
+		this.speed = 50;
+		this.startLife();
 	}
 
 	clear = () => {
@@ -77,7 +78,7 @@ class Board extends React.Component {
 		let g = this.state.gridFull;
 		let g2 = arrayClone(this.state.gridFull);
 		
-		// filling up a grid 
+		// calculate next step 
 		for (let i = 0; i < this.rows; i++) {
 		  for (let j = 0; j < this.cols; j++) {
 		    let count = 0;
@@ -121,7 +122,7 @@ class Board extends React.Component {
 			gridFull: g2,
 			lifeForm: "Glider"
 		  });
-		this.playButton();
+		this.startLife();
 	}
 
 	pulsar = () => {
@@ -197,18 +198,78 @@ class Board extends React.Component {
 			gridFull: g2,
 			lifeForm: "Pulsar"
 		  });
-		this.playButton();
+		this.startLife();
+	}
+
+	pentadecathlon = () => {
+		this.clear();
+		this.pauseButton();
+		let g2 = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
+		// encoding pentadecathlon
+
+		g2[5][5] = true;
+		g2[5][6] = true;
+		g2[5][8] = true;
+		g2[5][9] = true;
+		g2[5][10] = true;
+		g2[5][11] = true;
+		g2[5][13] = true;
+		g2[5][14] = true;
+		
+		g2[4][7] = true;
+		g2[6][7] = true;
+		g2[4][12] = true;
+		g2[6][12] = true;
+
+		this.setState({
+			gridFull: g2,
+			lifeForm: "Pentadecathlon"
+		  });
+		this.startLife();
+	}
+
+	tumbler = () => {
+		this.clear();
+		this.pauseButton();
+		let g2 = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
+		// encoding tumbler
+		g2[10][10] = true;
+		g2[11][10] = true;
+		g2[11][11] = true;
+		g2[11][12] = true;
+		g2[11][14] = true;
+		g2[11][15] = true;
+		g2[11][16] = true;
+		g2[10][16] = true;
+
+		g2[9][12] = true;
+		g2[8][12] = true;
+		g2[8][11] = true;
+
+		g2[9][14] = true;
+		g2[8][15] = true;
+		g2[8][14] = true;
+
+		g2[7][16] = true;
+		g2[7][10] = true;
+
+		this.setState({
+			gridFull: g2,
+			lifeForm: "Tumbler"
+		  });
+		this.startLife();
+	}
+
+	closeModal() {
+		
 	}
 
 	componentDidMount() {
 		this.seed();
-		this.playButton();
+		this.startLife();
 		new TimelineMax({repeat:-1, yoyo:true}).fromTo("form", 30, { x:-10 }, { x: 10});
 	}
 
-	form = () => {
-		var i = 1;
-	}
  
 	render() {
 		return (
@@ -218,7 +279,7 @@ class Board extends React.Component {
 					lifeForm={this.state.lifeForm}
 				/> 
 				<Buttons 
-					playButton={this.playButton}
+					startLife={this.startLife}
 					pauseButton={this.pauseButton}
 					slow={this.slow}
 					fast={this.fast}
@@ -230,7 +291,9 @@ class Board extends React.Component {
 				<Simulations
 					gridFull={this.state.gridFull}
 					glider={this.glider}
-					pulsar={this.pulsar}	
+					pulsar={this.pulsar}
+					pentadecathlon={this.pentadecathlon}
+					tumbler={this.tumbler}
 				/>
 				</div>
 				<Grid 

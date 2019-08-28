@@ -18,8 +18,8 @@ class Grid extends React.Component {
 
 	componentDidMount() {
         // kickstart animation
-            new TimelineMax({repeat:-1, yoyo:true}).fromTo(this.myBoard, 30, { x:-10 }, { x: 10});
-            new TimelineMax({repeat:-1, yoyo:true}).fromTo(this.myBoard, 30, { y:-10 }, { y: 10});
+            new TimelineMax({repeat:-1, yoyo:true}).fromTo(this.myBoard, 20, { x:-10 }, { x: 10});
+            new TimelineMax({repeat:-1, yoyo:true}).fromTo(this.myBoard, 20, { y:-10 }, { y: 10});
 	}
 	
 	render() {
